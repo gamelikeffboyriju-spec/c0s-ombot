@@ -1,0 +1,31 @@
+# Secrets
+.env
+config.py
+
+# Database
+*.db
+*.db-wal
+*.db-shm
+bomber.db
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
