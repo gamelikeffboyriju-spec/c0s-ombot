@@ -9,6 +9,20 @@ import asyncio
 import json
 import logging
 import os
+# Render worker trick — bind a dummy port so Render doesn't complain
+if os.environ.get("PORT"):
+    import threading
+    from http.server import HTTPServer, BaseHTTPRequestHandler
+    class _Ping(BaseHTTPRequestHandler):
+        def do_GET(self):
+            self.send_response(200)
+            self.end_headers()
+            self.wfile.write(b"OK")
+        def log_message(self, *args):
+            pass
+    def _run():
+        HTTPServer(("0.0.0.0", int(os.environ["PORT"])), _Ping).serve_forever()
+    threading.Thread(target=_run, daemon=True).start()
 import sqlite3
 import sys
 import random
