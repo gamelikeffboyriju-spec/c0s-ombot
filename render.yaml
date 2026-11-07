@@ -1,0 +1,11 @@
+services:
+  - type: worker
+    name: xipher-ultra-bomber
+    runtime: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: python "CUSTOME SMS.py"
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
