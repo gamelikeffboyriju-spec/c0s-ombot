@@ -1,1 +1,1 @@
-worker: python v.py
+worker: python "CUSTOME SMS.py"
