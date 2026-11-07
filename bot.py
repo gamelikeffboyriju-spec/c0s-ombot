@@ -1,16 +1,22 @@
-#!/usr/bin/env python3
-"""
-🔥 PREMIUM XIPHER ULTRA BOMBER BOT 🔥
-Features:
-- Free tier: 5 SMS per user (lifetime)
-- Prime subscription with unlimited SMS
-- Phone number auto-cleaning (+91 85854 85 85 → 918585485585)
-- Custom message support up to 5000+ chars
-- Inline schedule picker (Now / Schedule)
-- Bulk Firebase add for admin
-- Auto DM redirect to owner on Prime buy
-- Modern premium UI
-"""
+import os
+from http.server import BaseHTTPRequestHandler, HTTPServer
+import threading
+
+class HealthHandler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.end_headers()
+        self.wfile.write(b"OK")
+    def log_message(self, format, *args):
+        pass
+
+def run_health_server():
+    port = int(os.environ.get("PORT", 10000))
+    server = HTTPServer(("0.0.0.0", port), HealthHandler)
+    server.serve_forever()
+
+# Start health server in background thread
+threading.Thread(target=run_health_server, daemon=True).start()
 
 import asyncio
 import json
